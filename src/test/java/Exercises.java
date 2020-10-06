@@ -20,29 +20,28 @@ public class Exercises {
     String b2 = "btnButton2";
     String check = "end";
     String result = "wrap";
+
     @BeforeEach
     public void SetUp() {
 
 
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Konrad\\Downloads\\chromedriver_win32 (2)\\chromedriver.exe");
-            driver = new ChromeDriver();
-            driver.manage().deleteAllCookies();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Konrad\\Downloads\\chromedriver_win32 (2)\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
     }
-@Test
+
+    @Test
     public void exercise_1() throws InterruptedException {
         int line = 2;
 
         driver.get("https://antycaptcha.amberteam.pl/exercises/exercise1");
-        while (line <=4)
-        {
-            if (driver.findElement(By.xpath("/html/body/div[@class='container']/table[@class='u-full-width']/tbody/tr["+line+"]/td[2]/code")).getText().equals("B2"))
-            {
+        while (line <= 4) {
+            if (driver.findElement(By.xpath("/html/body/div[@class='container']/table[@class='u-full-width']/tbody/tr[" + line + "]/td[2]/code")).getText().equals("B2")) {
                 driver.findElement(By.name(b2)).click();
-            }
-            else if (driver.findElement(By.xpath("/html/body/div[@class='container']/table[@class='u-full-width']/tbody/tr["+line+"]/td[2]/code")).getText().equals("B1"))
+            } else if (driver.findElement(By.xpath("/html/body/div[@class='container']/table[@class='u-full-width']/tbody/tr[" + line + "]/td[2]/code")).getText().equals("B1"))
                 driver.findElement(By.name(b1)).click();
             line++;
 
@@ -51,6 +50,7 @@ public class Exercises {
         TimeUnit.SECONDS.sleep(1);
         assertTrue(driver.findElement(By.className(result)).getText().equals("OK. Good answer"));
     }
+
     @Test
     public void exercise_2() throws InterruptedException {
         driver.get("https://antycaptcha.amberteam.pl/exercises/exercise2");
@@ -64,6 +64,7 @@ public class Exercises {
         TimeUnit.SECONDS.sleep(1);
         assertTrue(driver.findElement(By.className(result)).getText().equals("OK. Good answer"));
     }
+
     @Test
     public void exercise_3() throws InterruptedException {
         driver.get("https://antycaptcha.amberteam.pl/exercises/exercise3");
@@ -77,6 +78,7 @@ public class Exercises {
         assertTrue(driver.findElement(By.className(result)).getText().equals("OK. Good answer"));
 
     }
+
     @Test
     public void exercise_4() throws InterruptedException {
         int item = 0;
@@ -93,7 +95,7 @@ public class Exercises {
         for (String element : elements) {
 
 
-            String group0[] = driver.findElement(By.xpath("/html/body/div/div["+ fori +"]")).getText().toString().split("\\r?\\n");
+            String group0[] = driver.findElement(By.xpath("/html/body/div/div[" + fori + "]")).getText().toString().split("\\r?\\n");
 
             for (int i = 0; i < group0.length; i++) {
                 if (group0[i].equals(element)) {
@@ -110,6 +112,7 @@ public class Exercises {
         assertTrue(driver.findElement(By.className(result)).getText().equals("OK. Good answer"));
 
     }
+
     @AfterEach
     public void closeSession() {
         driver.close();
